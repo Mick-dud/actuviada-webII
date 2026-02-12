@@ -1,25 +1,28 @@
 <div class="min-h-screen flex items-center justify-center bg-gray-50/50 p-4">
-    
-    <form [formGroup]="formCuenta" class="max-w-md w-full bg-white p-8 rounded-xl border border-default-medium shadow-sm">
-        
+
+    <form [formGroup]="formCuenta" (ngSubmit)="registrar()"
+        class="max-w-md w-full bg-white p-8 rounded-xl border border-default-medium shadow-sm">
+
         <div class="mb-8">
             <h2 class="text-2xl font-bold text-heading tracking-tight">Crea tu cuenta</h2>
             <p class="text-sm text-body mt-2">Introduce tus datos para empezar.</p>
         </div>
 
         <div class="mb-5">
-            <label for="email-alternative" class="block mb-2 text-sm font-semibold text-heading">Correo Electrónico</label>
-            <input formControlName="email" id="email" type="email" id="email-alternative"
+            <label for="email-alternative" class="block mb-2 text-sm font-semibold text-heading">Correo
+                Electrónico</label>
+            <input formControlName="email" name="email" id="email" type="email" id="email-alternative"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-brand block w-full px-4 py-3 transition-all placeholder:text-gray-400 outline-none"
                 placeholder="nombre@ejemplo.com" required />
-                @if(formCuenta.get('email')?.invalid && formCuenta.get('email')?.touched){
-                    <p class="mt-2 text-sm text-red-600">
-                        @if(formCuenta.get('email')?.errors?.['required'])
-                        {El email es obligatorio.}
-                        @else if(formCuenta.get('email')?.errors?.['email'])
-                        {No cumple el formato de email}
-                    </p>
-                }
+
+            @if(formCuenta.get('email')?.invalid && formCuenta.get('email')?.touched){
+            <p class="mt-2 text-sm text-red-600">
+                @if(formCuenta.get('email')?.errors?.['required'])
+                {El email es obligatorio.}
+                @else if(formCuenta.get('email')?.errors?.['pattern'])
+                {No cumple el formato de email}
+            </p>
+            }
         </div>
 
         <div class="mb-5">
@@ -27,13 +30,29 @@
             <input formControlName="password" type="password" id="password-alternative"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-brand block w-full px-4 py-3 transition-all placeholder:text-gray-400 outline-none"
                 placeholder="••••••••" required />
+
+            @if(formCuenta.get('password')?.invalid && formCuenta.get('password')?.touched){
+            <p class="mt-2 text-sm text-red-600">
+                @if(formCuenta.get('password')?.errors?.['required'])
+                {La contraseña es obligatoria.}
+                @else if(formCuenta.get('password')?.errors?.['pattern'])
+                {La contraseña debe tener al menos 8 caracteres, incluyendo una letra y un número.}
+            </p>
+            }
         </div>
 
         <div class="mb-6">
-            <label for="confirm-password-alternative" class="block mb-2 text-sm font-semibold text-heading">Confirmar Contraseña</label>
+            <label for="confirm-password-alternative" class="block mb-2 text-sm font-semibold text-heading">Confirmar
+                Contraseña</label>
             <input formControlName="repeatPassword" type="password" id="confirm-password-alternative"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-brand block w-full px-4 py-3 transition-all placeholder:text-gray-400 outline-none"
                 placeholder="••••••••" required />
+
+            @if(formCuenta.hasError('noCoinciden') && formCuenta.get('repeatPassword')?.touched){
+            <p class="mt-2 text-sm text-red-600">
+                Las contraseñas no coinciden.
+            </p>
+            }
         </div>
 
         <div class="flex items-start mb-8">
@@ -43,14 +62,17 @@
                     required />
             </div>
             <label for="remember-alternative" class="ms-3 text-sm font-medium text-heading select-none cursor-pointer">
-                Acepto los <a href="#" class="text-brand hover:text-brand-strong font-semibold underline decoration-2 underline-offset-4">términos y condiciones</a>.
+                Acepto los <a href="#"
+                    class="text-brand hover:text-brand-strong font-semibold underline decoration-2 underline-offset-4">términos
+                    y condiciones</a>.
             </label>
         </div>
 
-        <button type="submit"
-            class="w-full text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-md font-bold rounded-lg text-sm px-5 py-3.5 transition-colors focus:outline-none">
+        <button type="submit" [disabled]="formCuenta.invalid"
+            class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 shadow-lg font-bold rounded-xl text-sm px-5 py-3.5 transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none 
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:shadow-none disabled:hover:translate-y-0">
             Registrarse
         </button>
-        
     </form>
+
 </div>

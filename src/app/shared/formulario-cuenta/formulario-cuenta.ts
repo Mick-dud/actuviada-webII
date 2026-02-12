@@ -13,13 +13,14 @@ export class FormularioCuenta {
   private fb = inject(FormBuilder);
   //Definicion del formulario reactivo con validaciones
   reglaEmail = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-  reglaPassword = '^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d]{8,}$';
+  reglaPassword = '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$';
 
   formCuenta = this.fb.group({
     email:['',[Validators.required, Validators.pattern(this.reglaEmail)]],
     password:['',[Validators.required, Validators.pattern(this.reglaPassword)]],
     repeatPassword:['',[Validators.required]],
   },
+  {Validators: this.validarCalves}
 );
 //Metodo para la validacion de que las contraseñas coincidan
 validarCalves(control:AbstractControl):ValidationErrors|null{
@@ -38,4 +39,8 @@ mostrarError (campo:string, tipoError:string):boolean{
   return false;
 }
 
+registrar(){
+  console.log(`La cuenta creada es ${this.formCuenta.value}`);
+  alert(`Registro exitoso`)
+}
 }
