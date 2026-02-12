@@ -12,6 +12,14 @@
             <input formControlName="email" id="email" type="email" id="email-alternative"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-brand block w-full px-4 py-3 transition-all placeholder:text-gray-400 outline-none"
                 placeholder="nombre@ejemplo.com" required />
+                @if(formCuenta.get('email')?.invalid && formCuenta.get('email')?.touched){
+                    <p class="mt-2 text-sm text-red-600">
+                        @if(formCuenta.get('email')?.errors?.['required'])
+                        {El email es obligatorio.}
+                        @else if(formCuenta.get('email')?.errors?.['email'])
+                        {No cumple el formato de email}
+                    </p>
+                }
         </div>
 
         <div class="mb-5">
