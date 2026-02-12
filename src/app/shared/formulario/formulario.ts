@@ -48,9 +48,8 @@ export class Formulario {
     }
   }
 
-
   //metodo para eliminar
-  eliminarUsuario(id: number) {
+  eliminarUsuario(id: string) {
     if (confirm('¿Desea eliminar este usuario?')) {
       this.servicioUsuario.deleteUsuario(id).subscribe(() => {
         this.obtenerUsuarios();
