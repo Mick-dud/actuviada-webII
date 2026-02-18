@@ -34,7 +34,8 @@ export class UsuarioServicio {
     return this.http.get<Usuario>(`${this.API_URL}/usuarios/${id}.json`);
   } 
   //subscribe para que el metodo se ejacute y se muestre el resultado en la consola
-  //observable es para que el metodo se ejecute de manera asincrona y se muestre el resultado en la consola cuando se reciba la respuesta del servidor
+  //observable es para que el metodo se ejecute de manera asincrona y se muestre el
+  // resultado en la consola cuando se reciba la respuesta del servidor
   //metodo para actualizar usuario
   putUsuario(id:string, usuario:Usuario):Observable<Usuario>{
     return this.http.put<Usuario>(`${this.API_URL}/usuarios/${id}.json`, usuario);
