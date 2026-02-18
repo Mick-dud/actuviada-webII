@@ -20,6 +20,7 @@ export class Formulario {
     name: '',
     email: '',
     phone: '',
+    password:''
   };
   //Metodo para agregar u nuevo usuario a la lista
   ngOnInit() {
@@ -66,7 +67,7 @@ export class Formulario {
   //metodo para limpiar el formulario y salir del modo edicion
   resetear() {
     this.editando = false;
-    this.nuevoUsuario = { name: '', email: '', phone: '' };
+    this.nuevoUsuario = { name: '', email: '', phone: '', password:'' };
   }
 }
 
