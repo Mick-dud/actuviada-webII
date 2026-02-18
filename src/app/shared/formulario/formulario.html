@@ -47,10 +47,14 @@
                     <td class="p-4 text-slate-600">{{usuario.email}}</td>
                     <td class="p-4 text-slate-600">{{usuario.phone}}</td>
                     <td class="p-4 text-slate-500 font-mono text-xs">
+                        @if (servicioAuth.rolActual() === 'ADMIN') {
                         <button (click)="seleccionarParaEditar(usuario)"
                             class="mr-2 bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">✏️</button>
                         <button (click)="eliminarUsuario(usuario.id!)"
                             class="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">🗑️</button>
+                        }@else{
+                            <span>🔒</span>
+                        }
                     </td>
                 </tr>
                 }@empty {

@@ -15,8 +15,10 @@ export class AuthService {
   //localStorage para almacenar el usuario logueado, se puede usar para mantener la sesion activa incluso al recargar la pagina
   sesionIniciada = signal<boolean>(localStorage.getItem('sesion')==='true');
 
-  usuario: User | null = null;
-  private auth = getAuth();
+  //Accedemos al rol del usuario logueado desde LocalStorage, si no hay un usuario logueado, se asigna null
+  rolActual = signal<string |null>(localStorage.getItem('rol'));
+
+
 
   login(email: string, password: string):Observable<boolean> {
     return this.servicioUsuario.getUsuarios().pipe(
@@ -26,6 +28,12 @@ export class AuthService {
           localStorage.setItem('sesion','true');
           //guardar estos datos convirtiendo el objeto usuarioCoincide a string para almacenarlo en localStorage
           localStorage.setItem('user', JSON.stringify(usuarioCoincide));
+
+          //guardar el rol
+          localStorage.setItem('rol', usuarioCoincide.rol);
+          this.rolActual.set(usuarioCoincide.rol);
+
+
           this.sesionIniciada.set(true);
           return true;
         }
@@ -41,6 +49,8 @@ export class AuthService {
     localStorage.removeItem('sesion');
     localStorage.removeItem('user');
     this.sesionIniciada.set(false);
+    localStorage.removeItem('rol');
+    this.rolActual.set(null);
     //signOut(this.auth);
     //this.usuario = null;
   }

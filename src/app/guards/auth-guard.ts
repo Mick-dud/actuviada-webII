@@ -11,5 +11,5 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (servicioAuth.sesionIniciada()){
     return true;
   }
-  return router.parseUrl('login');
+  return router.parseUrl('/login');
 };

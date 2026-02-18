@@ -22,7 +22,7 @@ export class LoginUsuario {
     this.servicioAuth.login(this.email, this.password).subscribe(success => {
       if (success) {
         alert('Bienvenidos al sistema');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/usuarios']);
       } else {
         alert('Credenciales incorrectas');
       }

@@ -4,4 +4,5 @@ export interface Usuario{
     email:string;
     phone:string;
     password:string;
+    rol: 'ADMIN' | 'EMPLEADO';
 }

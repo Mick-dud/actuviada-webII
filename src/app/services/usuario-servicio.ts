@@ -7,6 +7,9 @@ import { Usuario } from '../models/usuario';
   providedIn: 'root',
 })
 export class UsuarioServicio {
+rolActual() {
+throw new Error('Method not implemented.');
+}
   private http = inject(HttpClient);
   private API_URL = 'https://evaluacion-dos-86884-default-rtdb.firebaseio.com/';
 
