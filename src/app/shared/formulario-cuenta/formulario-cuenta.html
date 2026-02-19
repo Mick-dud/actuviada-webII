@@ -4,7 +4,7 @@
         class="max-w-md w-full bg-white p-8 rounded-xl border border-default-medium shadow-sm">
 
         <div class="mb-8">
-            <h2 class="text-2xl font-bold text-heading tracking-tight">Crea tu cuenta</h2>
+            <h2 class="text-2xl font-bold text-heading tracking-tight">your message</h2>
             <p class="text-sm text-body mt-2">Introduce tus datos para empezar.</p>
         </div>
 
@@ -26,47 +26,20 @@
         </div>
 
         <div class="mb-5">
-            <label for="password-alternative" class="block mb-2 text-sm font-semibold text-heading">Contraseña</label>
-            <input formControlName="password" type="password" id="password-alternative"
+            <label for="comentario" class="block mb-2 text-sm font-semibold text-heading">Your message</label>
+            <textarea formControlName="comentario" type="texto" id="password-alternative"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-brand block w-full px-4 py-3 transition-all placeholder:text-gray-400 outline-none"
-                placeholder="••••••••" required />
-
-            @if(formCuenta.get('password')?.invalid && formCuenta.get('password')?.touched){
+                placeholder="Su comentario es requerido" required ></textarea>      
+            @if(formCuenta.get('comentario')?.invalid && formCuenta.get('comentario')?.touched){
             <p class="mt-2 text-sm text-red-600">
-                @if(formCuenta.get('password')?.errors?.['required'])
+                Su comentario es requerido
+                <!--@if(formCuenta.get('comentario')?.errors?.['required'])
                 {La contraseña es obligatoria.}
-                @else if(formCuenta.get('password')?.errors?.['pattern'])
-                {La contraseña debe tener al menos 8 caracteres, incluyendo una letra y un número.}
+                @else if(formCuenta.get('comentario')?.errors?.['pattern'])
+                {La contraseña debe tener al menos 8 caracteres, incluyendo una letra y un número.}-->
             </p>
             }
-        </div>
-
-        <div class="mb-6">
-            <label for="confirm-password-alternative" class="block mb-2 text-sm font-semibold text-heading">Confirmar
-                Contraseña</label>
-            <input formControlName="repeatPassword" type="password" id="confirm-password-alternative"
-                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-brand block w-full px-4 py-3 transition-all placeholder:text-gray-400 outline-none"
-                placeholder="••••••••" required />
-
-            @if(formCuenta.hasError('noCoinciden') && formCuenta.get('repeatPassword')?.touched){
-            <p class="mt-2 text-sm text-red-600">
-                Las contraseñas no coinciden.
-            </p>
-            }
-        </div>
-
-        <div class="flex items-start mb-8">
-            <div class="flex items-center h-5">
-                <input id="remember-alternative" type="checkbox"
-                    class="w-4 h-4 border border-default-medium rounded bg-neutral-secondary-medium text-brand focus:ring-brand"
-                    required />
-            </div>
-            <label for="remember-alternative" class="ms-3 text-sm font-medium text-heading select-none cursor-pointer">
-                Acepto los <a href="#"
-                    class="text-brand hover:text-brand-strong font-semibold underline decoration-2 underline-offset-4">términos
-                    y condiciones</a>.
-            </label>
-        </div>
+        </div>       
 
         <button type="submit" [disabled]="formCuenta.invalid"
             class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 shadow-lg font-bold rounded-xl text-sm px-5 py-3.5 transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none 
